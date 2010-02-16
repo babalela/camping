@@ -76,7 +76,9 @@ module Camping
     def method_missing(m,*a)
         m.to_s=~/=$/?self[$`]=a[0]:a==[]?self[m.to_s]:super
     end
-    undef id, type
+    # Commented out 'undef id, type' to try to get Camping to run on Ruby 1.9
+    # See: http://github.com/camping/camping/issues#issue/9
+    # undef id, type
   end
   
   # Helpers contains methods available in your controllers and views. You may
@@ -194,7 +196,11 @@ module Camping
     #   self / "styles.css" #=> "styles.css"
     #   self / R(Edit, 1)   #=> "/blog/edit/1"
     #
-    def /(p); p[0]==?/?@root+p:p end
+    
+    # Rewritten to try to get Camping running on Ruby 1.9
+    # See: http://github.com/camping/camping/issues#issue/9
+    #def /(p); p[0]==?/?@root+p:p end
+    def /(p); p[0] == ?/ ? @root + p : p end
     
     # Builds a URL route to a controller or a path, returning a URI object.
     # This way you'll get the hostname and the port number, a complete URL.

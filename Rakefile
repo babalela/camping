@@ -167,7 +167,7 @@ namespace :check do
     end
   end
 
-  desc "Verify that line lenght doesn't exceed 80 chars for camping.rb"
+  desc "Verify that line length doesn't exceed 80 chars for camping.rb"
   task :lines do
     i = 1
     File.open("lib/camping.rb").each_line do |line|
